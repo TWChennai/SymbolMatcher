@@ -18,7 +18,7 @@ var symbols = [{
 var getSymbolDiv = function (symbol) {
     var symbolDiv = document.createElement("div");
     symbolDiv.innerHTML = symbol.name;
-    symbolDiv.className = "boxed";
+    symbolDiv.className = "boxed symbol";
     symbolDiv.setAttribute('company', symbol.companyName);
     return symbolDiv;
 };
@@ -35,7 +35,7 @@ var getCompaniesDiv = function () {
     return getCompanies().map(company => {
         var companyDiv = document.createElement("div");
         companyDiv.innerHTML = company;
-        companyDiv.className = "boxed";
+        companyDiv.className = "boxed company";
         companyDiv.setAttribute('company', company);
         return companyDiv;
     })
