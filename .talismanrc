@@ -1,0 +1,7 @@
+fileignoreconfig:
+- filename: LeapMotion.html
+  checksum: 74a5816c7e4c181680ad1c700c8ba7ce0ba6c7202deef0da98225783e2b8c9b6
+  ignore_detectors: []
+- filename: package-lock.json
+  checksum: 2f528c9e44b7d610450ed4402829b9483a4ba296c5e9c90bd70d4bd367d1bddd
+  ignore_detectors: []
