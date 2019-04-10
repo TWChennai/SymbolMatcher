@@ -19,7 +19,7 @@ $(function () {
 function setWindowCoordinates(frame) {
   var windowCoordinates = document.getElementById('windowCoordinates');
   if (frame.pointables.length > 0) {
-    var tipPosition = frame.pointables[0].tipPosition;
+    var tipPosition = frameUtils.getRightIndexFingerPosition(frame);
     var windowPosition = frameUtils.getWindowCoordinates(frame, tipPosition)
     windowCoordinates.innerText = utils.vectorToStr(windowPosition, 0);
   }
