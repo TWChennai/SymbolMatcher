@@ -5,3 +5,6 @@ fileignoreconfig:
 - filename: package-lock.json
   checksum: 2f528c9e44b7d610450ed4402829b9483a4ba296c5e9c90bd70d4bd367d1bddd
   ignore_detectors: []
+- filename: symbols.html
+  checksum: 486f952d78af53808812b31c3c685211d6f68f50499ca2eb307ddb1cf5510ca1
+  ignore_detectors: []

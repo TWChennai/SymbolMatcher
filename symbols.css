@@ -1,0 +1,17 @@
+.boxed {
+    border: 1px solid green ;
+    width:75px;
+    height:75px;
+    float: left;
+    text-align: center
+  }
+
+  .symbols{
+     float: left;
+     width: 300px;
+  }
+
+  .companies{
+      float: left;
+      width: 300px;
+  }
