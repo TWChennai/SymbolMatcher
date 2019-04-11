@@ -10,8 +10,9 @@ var resetAllSelection = function () {
 }
 
 var markSelected = function (ele) {
-    if ($(ele).hasClass("company")) {
-        $(ele).addClass("selected")
+    var currentElement = $(ele)
+    if (currentElement.hasClass("company") && !currentElement.hasClass("done")) {
+        currentElement.addClass("selected")
     }
 }
 
@@ -27,12 +28,20 @@ var getSelectedCompany = function () {
     return ""
 }
 
+var markSelectedDone = function() {
+    var selectedCompany = $('.company.selected')
+    if (selectedCompany != undefined) {
+        selectedCompany.addClass('done')
+    }
+}
+
 export {
     initCompany,
     resetAllSelection,
     markSelected,
     isCompany,
-    getSelectedCompany
+    getSelectedCompany,
+    markSelectedDone
 }
 
 

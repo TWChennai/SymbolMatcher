@@ -10,8 +10,9 @@ var resetAllSelection = function () {
 }
 
 var markSelected = function (ele) {
-    if ($(ele).hasClass("symbol")) {
-        $(ele).addClass("selected")
+    var currentElement = $(ele)
+    if (currentElement.hasClass("symbol") && !currentElement.hasClass("done")) {
+        currentElement.addClass("selected")
     }
 }
 
@@ -23,10 +24,17 @@ var getSelectedSymbolCompany = function() {
     return ""
 }
 
+var markSelectedDone = function() {
+    var selectedSymbol = $('.symbol.selected')
+    if (selectedSymbol != undefined) {
+        selectedSymbol.addClass('done')
+    }
+}
+
 var isSymbol = function(ele) {
     return $(ele).hasClass("symbol")
 }
 
 export {
-    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany
+    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany, markSelectedDone
 }
