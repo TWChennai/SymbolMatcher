@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
-    entry: './src/symbols_init.js',
+    entry: './src/loop.js',
     output: {
         filename: 'source.bundle.js',
         path: path.resolve(__dirname, 'dist')

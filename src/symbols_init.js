@@ -1,11 +1,13 @@
 import * as s from './symbols.js'
 
-$(function () {
-  var symbols = s.getSymbolsDiv();
-  $('#symbolsEle').html(symbols)
-  var companies = s.getCompaniesDiv();
-  $('#companiesEle').html(companies);
-  });
+var initSymbol = function () {
+    var symbols = s.getSymbolsDiv();
+    $('#symbolsEle').html(symbols)
+    var companies = s.getCompaniesDiv();
+    $('#companiesEle').html(companies);
+}
+
+export { initSymbol }
 
 // document.getElementsByClassName("symbol")[1].getBoundingClientRect()
 

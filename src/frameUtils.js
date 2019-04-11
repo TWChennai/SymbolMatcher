@@ -17,7 +17,7 @@ var getRightHand = function (frame) {
   return null
 }
 
-var getRightIndexFingerPosition = function(frame) {
+var getRightIndexFingerPosition = function (frame) {
   var hand = getRightHand(frame)
   if (hand != null) {
     return hand.indexFinger.tipPosition
@@ -25,4 +25,12 @@ var getRightIndexFingerPosition = function(frame) {
   return 0
 }
 
-export { getRightIndexFingerPosition, getWindowCoordinates }
+var getRightIndexFingerCoordinates = function (frame) {
+  var tipPosition = getRightIndexFingerPosition(frame);
+  var windowPosition = getWindowCoordinates(frame, tipPosition)
+  return windowPosition
+}
+
+export {
+  getRightIndexFingerCoordinates
+}
