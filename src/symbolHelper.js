@@ -31,10 +31,14 @@ var markSelectedDone = function() {
     }
 }
 
+var removeDone = function() {
+    $('.symbol.done').remove()
+}
+
 var isSymbol = function(ele) {
     return $(ele).hasClass("symbol")
 }
 
 export {
-    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany, markSelectedDone
+    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany, markSelectedDone, removeDone
 }

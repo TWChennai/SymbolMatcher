@@ -16,8 +16,13 @@ var checkSymbolMatch = function () {
     companyHelper.resetAllSelection()
 }
 
+var removeDone = function() {
+    symbolHelper.removeDone()
+    companyHelper.removeDone()
+}
+
 
 export {
-    checkSymbolMatch
+    checkSymbolMatch, removeDone
 }
 

@@ -14,6 +14,7 @@ $(function () {
   companyHelper.initCompany()
   $('#check').click(function(){
     symbolChecker.checkSymbolMatch()
+    symbolChecker.removeDone()
   })
 
   Leap.loop(controllerOptions, function (frame) {

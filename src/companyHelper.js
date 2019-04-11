@@ -28,6 +28,10 @@ var getSelectedCompany = function () {
     return ""
 }
 
+var removeDone = function() {
+    $('.company.done').remove()
+}
+
 var markSelectedDone = function() {
     var selectedCompany = $('.company.selected')
     if (selectedCompany != undefined) {
@@ -41,7 +45,8 @@ export {
     markSelected,
     isCompany,
     getSelectedCompany,
-    markSelectedDone
+    markSelectedDone,
+    removeDone
 }
 
 
