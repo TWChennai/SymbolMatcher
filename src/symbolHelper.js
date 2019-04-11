@@ -3,8 +3,6 @@ import * as s from './symbols.js'
 var initSymbol = function () {
     var symbols = s.getSymbolsDiv();
     $('#symbolsEle').html(symbols)
-    var companies = s.getCompaniesDiv();
-    $('#companiesEle').html(companies);
 }
 
 var resetAllSelection = function () {
