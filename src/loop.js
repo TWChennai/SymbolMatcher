@@ -37,14 +37,8 @@ function setWindowCoordinates(windowPosition) {
 function setBasicValues(frame) {
   var fpsDisplay = document.getElementById('leapFPS');
   var handCountDisplay = document.getElementById('handCount');
-  var pointableCountDisplay = document.getElementById('pointableCount');
   var fingerCountDisplay = document.getElementById('fingerCount');
-  var toolCountDisplay = document.getElementById('toolCount');
-  var gestureCountDisplay = document.getElementById('gestureCount');
   fpsDisplay.innerText = frame.currentFrameRate;
   handCountDisplay.innerText = frame.hands.length;
-  pointableCountDisplay.innerText = frame.pointables.length;
   fingerCountDisplay.innerText = frame.fingers.length;
-  toolCountDisplay.innerText = frame.tools.length;
-  gestureCountDisplay.innerText = frame.gestures.length;
 }
