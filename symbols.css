@@ -15,3 +15,7 @@
       float: left;
       width: 300px;
   }
+
+  .selected{
+      background-color: brown
+  }
