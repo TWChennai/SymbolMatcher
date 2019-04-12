@@ -8,6 +8,9 @@ var getWindowCoordinates = function (frame, position) {
 }
 
 var getRightHand = function (frame) {
+  if (frame.pointables.length <= 0) {
+    return null
+  }
   for (var h = 0; h < frame.hands.length; h++) {
     var hand = frame.hands[h];
     if (hand.type == "right") {
@@ -18,6 +21,9 @@ var getRightHand = function (frame) {
 }
 
 var getRightIndexFingerPosition = function (frame) {
+  if (frame.pointables.length <= 0) {
+    return 0
+  }
   var hand = getRightHand(frame)
   if (hand != null) {
     return hand.indexFinger.tipPosition
@@ -31,6 +37,14 @@ var getRightIndexFingerCoordinates = function (frame) {
   return windowPosition
 }
 
+var getRightHandPinchStrength = function(frame) {
+  var hand = getRightHand(frame)
+  if (hand != null) {
+    return hand.pinchStrength
+  }
+  return 0
+}
+
 export {
-  getRightIndexFingerCoordinates
+  getRightIndexFingerCoordinates, getRightHandPinchStrength
 }

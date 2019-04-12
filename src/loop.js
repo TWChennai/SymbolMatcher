@@ -11,7 +11,7 @@ var controllerOptions = {
 
 $(function () {
   game.initGame()
-  $('#check').click(function(){
+  $('#check').click(function () {
     game.progress()
     var isgameOver = game.isGameOver()
     if (isgameOver) {
@@ -29,20 +29,19 @@ $(function () {
 
 
 var highlightSelectedBox = function (frame) {
-  if (frame.pointables.length > 0) {
-    const windowCoordinates = frameUtils.getRightIndexFingerCoordinates(frame);
-    setWindowCoordinates(windowCoordinates);
-    if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
-      var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
-      if (eleInPosition != null) {
-        if (symbolHelper.isSymbol(eleInPosition)) {
-          symbolHelper.resetAllSelection()
-          symbolHelper.markSelected(eleInPosition)
-        }
-        if (companyHelper.isCompany(eleInPosition)) {
-          companyHelper.resetAllSelection()
-          companyHelper.markSelected(eleInPosition)
-        }
+  const windowCoordinates = frameUtils.getRightIndexFingerCoordinates(frame);
+  setWindowCoordinates(windowCoordinates);
+
+  if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
+    var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
+    if (eleInPosition != null) {
+      if (symbolHelper.isSymbol(eleInPosition)) {
+        symbolHelper.resetAllSelection()
+        symbolHelper.markSelected(eleInPosition)
+      }
+      if (companyHelper.isCompany(eleInPosition)) {
+        companyHelper.resetAllSelection()
+        companyHelper.markSelected(eleInPosition)
       }
     }
   }
@@ -57,7 +56,9 @@ function setBasicValues(frame) {
   var fpsDisplay = document.getElementById('leapFPS');
   var handCountDisplay = document.getElementById('handCount');
   var fingerCountDisplay = document.getElementById('fingerCount');
+  var pinchStrengthDisplay = document.getElementById('pinchStrength')
   fpsDisplay.innerText = frame.currentFrameRate;
   handCountDisplay.innerText = frame.hands.length;
   fingerCountDisplay.innerText = frame.fingers.length;
+  pinchStrengthDisplay.innerText = frameUtils.getRightHandPinchStrength(frame)
 }
