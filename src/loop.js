@@ -29,7 +29,7 @@ $(function () {
 
 
 var highlightSelectedBox = function (frame) {
-  const windowCoordinates = frameUtils.getRightIndexFingerCoordinates(frame);
+  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
   setWindowCoordinates(windowCoordinates);
 
   if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
@@ -60,5 +60,5 @@ function setBasicValues(frame) {
   fpsDisplay.innerText = frame.currentFrameRate;
   handCountDisplay.innerText = frame.hands.length;
   fingerCountDisplay.innerText = frame.fingers.length;
-  pinchStrengthDisplay.innerText = frameUtils.getRightHandPinchStrength(frame)
+  pinchStrengthDisplay.innerText = frameUtils.getHandPinchStrength(frame, frameUtils.handType.right)
 }

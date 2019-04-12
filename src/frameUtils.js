@@ -1,3 +1,8 @@
+var handType = {
+  right: "right",
+  left: "left"
+}
+
 var getWindowCoordinates = function (frame, position) {
   var normalizedPosition = frame.interactionBox.normalizePoint(position, true);
   var windowPosition = [normalizedPosition[0] * window.innerWidth,
@@ -7,38 +12,38 @@ var getWindowCoordinates = function (frame, position) {
   return windowPosition
 }
 
-var getRightHand = function (frame) {
+var getHand = function (frame, type) {
   if (frame.pointables.length <= 0) {
     return null
   }
   for (var h = 0; h < frame.hands.length; h++) {
     var hand = frame.hands[h];
-    if (hand.type == "right") {
+    if (hand.type == type) {
       return hand
     }
   }
   return null
 }
 
-var getRightIndexFingerPosition = function (frame) {
+var getIndexFingerPosition = function (frame, type) {
   if (frame.pointables.length <= 0) {
     return 0
   }
-  var hand = getRightHand(frame)
+  var hand = getHand(frame, type)
   if (hand != null) {
     return hand.indexFinger.tipPosition
   }
   return 0
 }
 
-var getRightIndexFingerCoordinates = function (frame) {
-  var tipPosition = getRightIndexFingerPosition(frame);
+var getIndexFingerCoordinates = function (frame, type) {
+  var tipPosition = getIndexFingerPosition(frame, type);
   var windowPosition = getWindowCoordinates(frame, tipPosition)
   return windowPosition
 }
 
-var getRightHandPinchStrength = function(frame) {
-  var hand = getRightHand(frame)
+var getHandPinchStrength = function(frame, type) {
+  var hand = getHand(frame, type)
   if (hand != null) {
     return hand.pinchStrength
   }
@@ -46,5 +51,5 @@ var getRightHandPinchStrength = function(frame) {
 }
 
 export {
-  getRightIndexFingerCoordinates, getRightHandPinchStrength
+  getIndexFingerCoordinates, getHandPinchStrength, handType
 }
