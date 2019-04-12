@@ -1,6 +1,7 @@
 import * as s from './symbols.js'
 
 var initCompany = function () {
+    $('#companiesEle').html('')
     var companies = s.getCompaniesDiv();
     $('#companiesEle').html(companies);
 }
@@ -28,14 +29,11 @@ var getSelectedCompany = function () {
     return ""
 }
 
-var removeDone = function() {
-    $('.company.done').remove()
-}
-
-var markSelectedDone = function() {
+var removeSelected = function() {
+    $('.company.selected').remove()
     var selectedCompany = $('.company.selected')
     if (selectedCompany != undefined) {
-        selectedCompany.addClass('done')
+        selectedCompany.remove()
     }
 }
 
@@ -45,8 +43,7 @@ export {
     markSelected,
     isCompany,
     getSelectedCompany,
-    markSelectedDone,
-    removeDone
+    removeSelected
 }
 
 

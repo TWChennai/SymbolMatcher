@@ -2,7 +2,7 @@ import * as frameUtils from './frameUtils.js'
 import * as utils from './utils.js'
 import * as symbolHelper from './symbolHelper.js'
 import * as companyHelper from './companyHelper.js'
-import * as symbolChecker from './symbolChecker.js'
+import * as game from './game.js'
 
 var controllerOptions = {
   enableGestures: true
@@ -10,11 +10,14 @@ var controllerOptions = {
 
 
 $(function () {
-  symbolHelper.initSymbol()
-  companyHelper.initCompany()
+  game.initGame()
   $('#check').click(function(){
-    symbolChecker.checkSymbolMatch()
-    symbolChecker.removeDone()
+    game.progress()
+    var isgameOver = game.isGameOver()
+    if (isgameOver) {
+      alert("successfully completed game!!")
+      game.initGame()
+    }
   })
 
   Leap.loop(controllerOptions, function (frame) {

@@ -1,6 +1,7 @@
 import * as s from './symbols.js'
 
 var initSymbol = function () {
+    $('#symbolsEle').html('')
     var symbols = s.getSymbolsDiv();
     $('#symbolsEle').html(symbols)
 }
@@ -24,15 +25,11 @@ var getSelectedSymbolCompany = function() {
     return ""
 }
 
-var markSelectedDone = function() {
+var removeSelected = function() {
     var selectedSymbol = $('.symbol.selected')
     if (selectedSymbol != undefined) {
-        selectedSymbol.addClass('done')
+        selectedSymbol.remove()
     }
-}
-
-var removeDone = function() {
-    $('.symbol.done').remove()
 }
 
 var isSymbol = function(ele) {
@@ -40,5 +37,5 @@ var isSymbol = function(ele) {
 }
 
 export {
-    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany, markSelectedDone, removeDone
+    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany, removeSelected
 }

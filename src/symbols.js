@@ -76,6 +76,10 @@ var getCompaniesDiv = function () {
     })
 }
 
+var getTotalSymbols = function() {
+    return symbols.length
+}
+
 export {
-    getSymbolsDiv, getCompaniesDiv
+    getSymbolsDiv, getCompaniesDiv, getTotalSymbols
 }
