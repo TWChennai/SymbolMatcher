@@ -10,10 +10,27 @@ var resetAllSelection = function () {
     $('.company').removeClass("selected")
 }
 
-var markSelected = function (ele) {
+var resetAllHighlights = function () {
+    $('.company').removeClass("highlighted")
+}
+
+var resetAll = function() {
+    resetAllSelection()
+    resetAllHighlights()
+}
+
+var markSelected = function () {
+    var highlightedSymbol = $('.company.highlighted')
+    if (highlightedSymbol != undefined) {
+        resetAllSelection()
+        return highlightedSymbol.addClass('selected')
+    }
+}
+
+var markHighlighted = function (ele) {
     var currentElement = $(ele)
-    if (currentElement.hasClass("company") && !currentElement.hasClass("done")) {
-        currentElement.addClass("selected")
+    if (currentElement.hasClass("company")) {
+        currentElement.addClass("highlighted")
     }
 }
 
@@ -29,7 +46,7 @@ var getSelectedCompany = function () {
     return ""
 }
 
-var removeSelected = function() {
+var removeSelected = function () {
     $('.company.selected').remove()
     var selectedCompany = $('.company.selected')
     if (selectedCompany != undefined) {
@@ -43,7 +60,10 @@ export {
     markSelected,
     isCompany,
     getSelectedCompany,
-    removeSelected
+    removeSelected,
+    markHighlighted,
+    resetAllHighlights,
+    resetAll
 }
 
 

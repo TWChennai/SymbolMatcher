@@ -6,18 +6,35 @@ var initSymbol = function () {
     $('#symbolsEle').html(symbols)
 }
 
+var resetAll = function() {
+    resetAllSelection()
+    resetAllHiglights()
+}
+
 var resetAllSelection = function () {
     $('.symbol').removeClass("selected")
 }
 
-var markSelected = function (ele) {
+var resetAllHiglights = function () {
+    $('.symbol').removeClass("highlighted")
+}
+
+var markHighlighted = function (ele) {
     var currentElement = $(ele)
-    if (currentElement.hasClass("symbol") && !currentElement.hasClass("done")) {
-        currentElement.addClass("selected")
+    if (currentElement.hasClass("symbol")) {
+        currentElement.addClass("highlighted")
     }
 }
 
-var getSelectedSymbolCompany = function() {
+var markSelected = function () {
+    var highlightedSymbol = $('.symbol.highlighted')
+    if (highlightedSymbol != undefined) {
+        resetAllSelection()
+        return highlightedSymbol.addClass('selected')
+    }
+}
+
+var getSelectedSymbolCompany = function () {
     var selectedSymbol = $('.symbol.selected')
     if (selectedSymbol != undefined) {
         return selectedSymbol.attr('company')
@@ -25,17 +42,25 @@ var getSelectedSymbolCompany = function() {
     return ""
 }
 
-var removeSelected = function() {
+var removeSelected = function () {
     var selectedSymbol = $('.symbol.selected')
     if (selectedSymbol != undefined) {
         selectedSymbol.remove()
     }
 }
 
-var isSymbol = function(ele) {
+var isSymbol = function (ele) {
     return $(ele).hasClass("symbol")
 }
 
 export {
-    initSymbol, resetAllSelection, markSelected, isSymbol, getSelectedSymbolCompany, removeSelected
+    initSymbol,
+    resetAllSelection,
+    markSelected,
+    isSymbol,
+    getSelectedSymbolCompany,
+    removeSelected,
+    markHighlighted,
+    resetAllHiglights,
+    resetAll
 }

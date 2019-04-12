@@ -13,7 +13,7 @@ var getWindowCoordinates = function (frame, position) {
 }
 
 var getHand = function (frame, type) {
-  if (frame.pointables.length <= 0) {
+  if (frame.pointables != undefined && frame.pointables.length <= 0) {
     return null
   }
   for (var h = 0; h < frame.hands.length; h++) {
@@ -26,7 +26,7 @@ var getHand = function (frame, type) {
 }
 
 var getIndexFingerPosition = function (frame, type) {
-  if (frame.pointables.length <= 0) {
+  if (frame.pointables != undefined && frame.pointables.length <= 0) {
     return 0
   }
   var hand = getHand(frame, type)

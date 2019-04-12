@@ -20,8 +20,8 @@ var progress = function () {
         companyHelper.removeSelected()
         incrementSuccessCounter()
     }
-    symbolHelper.resetAllSelection()
-    companyHelper.resetAllSelection()
+    symbolHelper.resetAll()
+    companyHelper.resetAll()
 }
 
 var incrementSuccessCounter = function () {

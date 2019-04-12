@@ -37,9 +37,12 @@ var highlightSymbol = function (frame) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
     if (eleInPosition != null) {
       if (symbolHelper.isSymbol(eleInPosition)) {
-        symbolHelper.resetAllSelection()
-        symbolHelper.markSelected(eleInPosition)
+        symbolHelper.resetAllHiglights()
+        symbolHelper.markHighlighted(eleInPosition)
       }
+    }
+    if (frameUtils.getHandPinchStrength(frame, frameUtils.handType.left) == 1){
+      symbolHelper.markSelected()
     }
   }
 }
@@ -52,9 +55,12 @@ var highlightCompany = function (frame) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
     if (eleInPosition != null) {
       if (companyHelper.isCompany(eleInPosition)) {
-        companyHelper.resetAllSelection()
-        companyHelper.markSelected(eleInPosition)
+        companyHelper.resetAllHighlights()
+        companyHelper.markHighlighted(eleInPosition)
       }
+    }
+    if (frameUtils.getHandPinchStrength(frame, frameUtils.handType.right) == 1){
+      companyHelper.markSelected()
     }
   }
 }
@@ -73,9 +79,11 @@ function setBasicValues(frame) {
   var fpsDisplay = document.getElementById('leapFPS');
   var handCountDisplay = document.getElementById('handCount');
   var fingerCountDisplay = document.getElementById('fingerCount');
-  var pinchStrengthDisplay = document.getElementById('pinchStrength')
+  var rightPinchStrengthDisplay = document.getElementById('rightPinchStrength')
+  var leftPinchStrengthDisplay = document.getElementById('leftPinchStrength')
   fpsDisplay.innerText = frame.currentFrameRate;
   handCountDisplay.innerText = frame.hands.length;
   fingerCountDisplay.innerText = frame.fingers.length;
-  pinchStrengthDisplay.innerText = frameUtils.getHandPinchStrength(frame, frameUtils.handType.right)
+  rightPinchStrengthDisplay.innerText = frameUtils.getHandPinchStrength(frame, frameUtils.handType.right)
+  leftPinchStrengthDisplay.innerText = frameUtils.getHandPinchStrength(frame, frameUtils.handType.left)
 }
