@@ -22,15 +22,16 @@ $(function () {
 
   Leap.loop(controllerOptions, function (frame) {
     setBasicValues(frame);
-    highlightSelectedBox(frame);
+    highlightSymbol(frame);
+    highlightCompany(frame)
   })
 });
 
 
 
-var highlightSelectedBox = function (frame) {
-  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
-  setWindowCoordinates(windowCoordinates);
+var highlightSymbol = function (frame) {
+  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.left);
+  setLeftWindowCoordinates(windowCoordinates);
 
   if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
@@ -39,6 +40,17 @@ var highlightSelectedBox = function (frame) {
         symbolHelper.resetAllSelection()
         symbolHelper.markSelected(eleInPosition)
       }
+    }
+  }
+}
+
+var highlightCompany = function (frame) {
+  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
+  setRightWindowCoordinates(windowCoordinates);
+
+  if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
+    var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
+    if (eleInPosition != null) {
       if (companyHelper.isCompany(eleInPosition)) {
         companyHelper.resetAllSelection()
         companyHelper.markSelected(eleInPosition)
@@ -47,8 +59,13 @@ var highlightSelectedBox = function (frame) {
   }
 }
 
-function setWindowCoordinates(windowPosition) {
-  var windowCoordinates = document.getElementById('windowCoordinates');
+function setLeftWindowCoordinates(windowPosition) {
+  var windowCoordinates = document.getElementById('leftwindowCoordinates');
+  windowCoordinates.innerText = utils.vectorToStr(windowPosition, 0);
+}
+
+function setRightWindowCoordinates(windowPosition) {
+  var windowCoordinates = document.getElementById('rightwindowCoordinates');
   windowCoordinates.innerText = utils.vectorToStr(windowPosition, 0);
 }
 
