@@ -13,6 +13,7 @@ var resetAll = function() {
 
 var resetAllSelection = function () {
     $('.symbol').removeClass("selected")
+    $('#symbolSelected').val("")
 }
 
 var resetAllHiglights = function () {
@@ -26,20 +27,21 @@ var markHighlighted = function (ele) {
     }
 }
 
+var setSelectedSymbol = function(company) {
+    $('#symbolSelected').val(company)
+}
+
 var markSelected = function () {
     var highlightedSymbol = $('.symbol.highlighted')
     if (highlightedSymbol != undefined) {
         resetAllSelection()
-        return highlightedSymbol.addClass('selected')
+        highlightedSymbol.addClass('selected')
+        setSelectedSymbol(highlightedSymbol.attr('company'))
     }
 }
 
 var getSelectedSymbolCompany = function () {
-    var selectedSymbol = $('.symbol.selected')
-    if (selectedSymbol != undefined) {
-        return selectedSymbol.attr('company')
-    }
-    return ""
+    return $('#symbolSelected').val()
 }
 
 var removeSelected = function () {
@@ -53,6 +55,10 @@ var isSymbol = function (ele) {
     return $(ele).hasClass("symbol")
 }
 
+var isSymbolValueContainer = function(ele) {
+    return $(ele).hasClass("symbolValue")
+}
+
 export {
     initSymbol,
     resetAllSelection,
@@ -62,5 +68,6 @@ export {
     removeSelected,
     markHighlighted,
     resetAllHiglights,
-    resetAll
+    resetAll,
+    isSymbolValueContainer
 }

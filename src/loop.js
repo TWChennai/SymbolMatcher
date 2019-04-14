@@ -21,10 +21,11 @@ $(function () {
   })
 
   Leap.loop(controllerOptions, function (frame) {
-    setBasicValues(frame);
-    highlightSymbol(frame);
-    highlightCompany(frame)
-  })
+      setBasicValues(frame);
+      highlightSymbol(frame);
+      highlightCompany(frame)
+    }).use('handEntry')
+    .use('handHold')
 });
 
 
@@ -40,9 +41,9 @@ var highlightSymbol = function (frame) {
         symbolHelper.resetAllHiglights()
         symbolHelper.markHighlighted(eleInPosition)
       }
-    }
-    if (frameUtils.getHandPinchStrength(frame, frameUtils.handType.left) == 1){
-      symbolHelper.markSelected()
+      if (symbolHelper.isSymbolValueContainer(eleInPosition)){
+        symbolHelper.markSelected()
+      }
     }
   }
 }
@@ -58,9 +59,9 @@ var highlightCompany = function (frame) {
         companyHelper.resetAllHighlights()
         companyHelper.markHighlighted(eleInPosition)
       }
-    }
-    if (frameUtils.getHandPinchStrength(frame, frameUtils.handType.right) == 1){
-      companyHelper.markSelected()
+      if (companyHelper.isCompanyValueContainer(eleInPosition)){
+        companyHelper.markSelected()
+      }
     }
   }
 }

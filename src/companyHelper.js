@@ -1,4 +1,5 @@
 import * as s from './symbols.js'
+import { getSelectedSymbolCompany } from './symbolHelper.js';
 
 var initCompany = function () {
     $('#companiesEle').html('')
@@ -8,6 +9,7 @@ var initCompany = function () {
 
 var resetAllSelection = function () {
     $('.company').removeClass("selected")
+    $('#companySelected').val("")
 }
 
 var resetAllHighlights = function () {
@@ -20,10 +22,11 @@ var resetAll = function() {
 }
 
 var markSelected = function () {
-    var highlightedSymbol = $('.company.highlighted')
-    if (highlightedSymbol != undefined) {
+    var highlightedCompany = $('.company.highlighted')
+    if (highlightedCompany != undefined) {
         resetAllSelection()
-        return highlightedSymbol.addClass('selected')
+        highlightedCompany.addClass('selected')
+        setSelectedCompany(highlightedCompany.attr('company'))
     }
 }
 
@@ -39,11 +42,7 @@ var isCompany = function (ele) {
 }
 
 var getSelectedCompany = function () {
-    var selectedCompany = $('.company.selected')
-    if (selectedCompany != undefined) {
-        return selectedCompany.attr('company')
-    }
-    return ""
+    $('#companySelected').val()
 }
 
 var removeSelected = function () {
@@ -52,6 +51,14 @@ var removeSelected = function () {
     if (selectedCompany != undefined) {
         selectedCompany.remove()
     }
+}
+
+var setSelectedCompany = function(company) {
+    $('#companySelected').val(company)
+}
+
+var isCompanyValueContainer = function(ele) {
+    return $(ele).hasClass("companyValue")
 }
 
 export {
@@ -63,7 +70,8 @@ export {
     removeSelected,
     markHighlighted,
     resetAllHighlights,
-    resetAll
+    resetAll,
+    isCompanyValueContainer
 }
 
 

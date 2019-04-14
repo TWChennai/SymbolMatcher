@@ -8,3 +8,6 @@ fileignoreconfig:
 - filename: symbols.html
   checksum: 486f952d78af53808812b31c3c685211d6f68f50499ca2eb307ddb1cf5510ca1
   ignore_detectors: []
+- filename: leapjs-plugins/main/leap-plugins-0.1.12.min.js
+  checksum: d45e07723023eae7adf3266aabbb36d596c44c70a60035b168c160d03e676fb4
+  ignore_detectors: []
