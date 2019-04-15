@@ -31,10 +31,6 @@ body{
       overflow: hidden;
   }
 
-  .company{
-      clear: left;
-  }
-
   .clear-fix{
       clear: both;
   }

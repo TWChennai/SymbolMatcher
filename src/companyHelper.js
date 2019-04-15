@@ -2,8 +2,8 @@ import * as s from './symbols.js'
 
 var initCompany = function () {
     $('#companiesEle').html('')
-    var companies = s.getCompaniesDiv();
-    $('#companiesEle').html(companies);
+    var companies = s.getCompanyItems();
+    $('#companiesEle').html($("<ul>").attr("id", "lightSlider").append(companies));
 }
 
 var resetAllHighlights = function () {

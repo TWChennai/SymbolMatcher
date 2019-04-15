@@ -66,13 +66,13 @@ var getCompanies = function () {
     return [...new Set(symbols.map(symbol => symbol.companyName))]
 }
 
-var getCompaniesDiv = function () {
+var getCompanyItems = function () {
     return getCompanies().map(company => {
-        var companyDiv = document.createElement("div");
-        companyDiv.innerHTML = company;
-        companyDiv.className = "boxed company";
-        companyDiv.setAttribute('company', company);
-        return companyDiv;
+        var companyItem = $("<li>");
+        companyItem.text(company);
+        companyItem.addClass("company");
+        companyItem.attr('company', company);
+        return companyItem;
     })
 }
 
@@ -81,5 +81,5 @@ var getTotalSymbols = function() {
 }
 
 export {
-    getSymbolsDiv, getCompaniesDiv, getTotalSymbols
+    getSymbolsDiv, getCompanyItems, getTotalSymbols
 }

@@ -11,6 +11,10 @@ var controllerOptions = {
 
 $(function () {
   game.initGame()
+  $("#lightSlider").lightSlider({
+    item: 2,
+    loop: true
+  })
   $('#check').click(function () {
     var isgameOver = game.isGameOver()
     if (isgameOver) {
