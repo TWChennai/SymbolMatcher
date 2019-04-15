@@ -2,29 +2,46 @@ import * as symbols from './symbols.js'
 import * as symbolHelper from './symbolHelper.js'
 import * as companyHelper from './companyHelper.js'
 
-var totalCount = 0;
+var currentSymbolIndex = 0;
+var successCounter = 0;
+var symbolItems = [];
 
 var initGame = function () {
-    totalCount = symbols.getTotalSymbols()
-    symbolHelper.initSymbol()
+    currentSymbolIndex = 0;
+    successCounter = 0;
+    symbolItems = symbols.getAll()
+    displaySymbol()
     companyHelper.initCompany()
 }
 
-var isGameOver = function () {
-    var successCount = symbolHelper.getTotalSymbolMatch()
-    var isGameOver = successCount == totalCount && totalCount > 0
-    if (isGameOver) {
-        return true;
-    } else {
-        alert("Some matches are wrong!!")
-        symbolHelper.resetAllSelection()
-        companyHelper.resetAllHighlights()
-        return false;
+var progress = function() {
+    var selectedSymbolCompany = symbolHelper.getSelectedSymbolCompany();
+    var userSelectedCompany = companyHelper.getSelectedCompany();
+    if (selectedSymbolCompany != "" && selectedSymbolCompany == userSelectedCompany) {
+        alert("true")
+        successCounter += 1
+        currentSymbolIndex += 1
+        displaySymbol()
     }
+    else {
+        alert("false")
+    }
+}
+
+var displaySymbol = function() {
+    if (currentSymbolIndex >= symbolItems.length) {
+        return;
+    }
+    symbolHelper.displaySymbol(symbolItems[currentSymbolIndex])
+}
+
+var isGameOver = function () {
+    return successCounter == symbolItems.length;
 }
 
 
 export {
     initGame,
+    progress,
     isGameOver
 }

@@ -1,41 +1,34 @@
 import * as s from './symbols.js'
 
+var slider = null;
+
 var initCompany = function () {
     $('#companiesEle').html('')
     var companies = s.getCompanyItems();
     $('#companiesEle').html($("<ul>").attr("id", "lightSlider").append(companies));
+    slider = $("#lightSlider").lightSlider({
+        item: 2,
+        loop: true
+      });
 }
 
-var resetAllHighlights = function () {
-    $('.company').removeClass("highlighted")
+var moveToNextCompany = function() {
+    slider.goToNextSlide();
 }
 
-var markHighlighted = function (ele) {
-    var currentElement = $(ele)
-    if (currentElement.hasClass("company")) {
-        currentElement.addClass("highlighted")
-    }
+var getSelectedCompany = function() {
+    return $("#lightSlider li.active").attr("company");
 }
 
-var getHiglightedCompany = function() {
-    var highlightedCompany = $('.company.highlighted')
-    if (highlightedCompany != undefined) {
-        return highlightedCompany.attr('company')
-    }
-
-    return ""
-}
-
-var isCompany = function (ele) {
-    return $(ele).hasClass("company")
+var isCompanyContainer = function (ele) {
+    return $(ele).hasClass("companies") || $(ele).attr("id") == "main"
 }
 
 export {
     initCompany,
-    isCompany,
-    getHiglightedCompany,
-    markHighlighted,
-    resetAllHighlights,
+    isCompanyContainer,
+    getSelectedCompany,
+    moveToNextCompany
 }
 
 

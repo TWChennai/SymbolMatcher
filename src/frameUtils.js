@@ -12,6 +12,13 @@ var getWindowCoordinates = function (frame, position) {
   return windowPosition
 }
 
+var hasSwipeGesture = function (frame) {
+  if (frame.valid && frame.gestures.length > 0) {
+    return frame.gestures.find(o => o.type === 'swipe')
+  }
+  return false;
+}
+
 var getHand = function (frame, type) {
   if (frame.pointables != undefined && frame.pointables.length <= 0) {
     return null
@@ -42,7 +49,7 @@ var getIndexFingerCoordinates = function (frame, type) {
   return windowPosition
 }
 
-var getHandPinchStrength = function(frame, type) {
+var getHandPinchStrength = function (frame, type) {
   var hand = getHand(frame, type)
   if (hand != null) {
     return hand.pinchStrength
@@ -51,5 +58,8 @@ var getHandPinchStrength = function(frame, type) {
 }
 
 export {
-  getIndexFingerCoordinates, getHandPinchStrength, handType
+  getIndexFingerCoordinates,
+  getHandPinchStrength,
+  handType,
+  hasSwipeGesture
 }

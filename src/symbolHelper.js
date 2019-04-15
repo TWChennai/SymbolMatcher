@@ -1,43 +1,17 @@
 import * as s from './symbols.js'
 
-var initSymbol = function () {
+var displaySymbol = function (symbol) {
     $('#symbolsEle').html('')
-    var symbols = s.getSymbolsDiv();
-    $('#symbolsEle').html(symbols)
+    var symbolDiv = s.getSymbolAsDiv(symbol);
+    $('#symbolsEle').html(symbolDiv)
 }
 
-var resetAllSelection = function () {
-    $('.companyValue').val("")
-}
-
-var isDropSection = function (ele) {
-    return $(ele).hasClass("companyValue")
-}
-
-var populateSelectedCompany = function(ele, value){
-    $(ele).val(value)
-}
-
-var getTotalSymbolMatch = function () {
-    var successCounter = 0;
-    $('.symbol-div').each(function(){
-        var currentSymbol = $(this)
-        if (currentSymbol != undefined) {
-            var symbolCompany = currentSymbol.find(".symbol").attr('company')
-            var userSelectedCompany = currentSymbol.find(".companyValue").val()
-            if (symbolCompany != "" && symbolCompany == userSelectedCompany){
-                successCounter = successCounter + 1
-            }
-        }
-    })
-    return successCounter
+var getSelectedSymbolCompany = function() {
+    return $('#symbolsEle .symbol').attr("company");
 }
 
 
 export {
-    initSymbol,
-    resetAllSelection,
-    isDropSection,
-    populateSelectedCompany,
-    getTotalSymbolMatch
+    displaySymbol,
+   getSelectedSymbolCompany
 }

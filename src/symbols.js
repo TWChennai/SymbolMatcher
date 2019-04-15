@@ -12,8 +12,7 @@ var symbols = [{
         name: 'Symbol3',
         url: 'url3',
         companyName: 'Company3'
-    }
-    // },
+    },
     // {
     //     name: 'Symbol4',
     //     url: 'url3',
@@ -51,16 +50,17 @@ var symbols = [{
     // }
 ]
 
-var getSymbolDiv = function (symbol) {
+var getAll = function() {
+    return symbols;
+}
+
+var getSymbolAsDiv = function (symbol) {
     var symbolDiv = document.createElement("div");
-    symbolDiv.innerHTML = "<div class='boxed symbol' company=" + symbol.companyName +"><p>" + symbol.name + "</p></div><input type='textbox' class='companyValue'></input>";
-    symbolDiv.className = "symbol-div";
+    symbolDiv.innerHTML = symbol.name;
+    symbolDiv.className = "boxed symbol";
+    symbolDiv.setAttribute("company", symbol.companyName);
     return symbolDiv;
 };
-
-var getSymbolsDiv = function () {
-    return symbols.map(symbol => getSymbolDiv(symbol));
-}
 
 var getCompanies = function () {
     return [...new Set(symbols.map(symbol => symbol.companyName))]
@@ -76,10 +76,6 @@ var getCompanyItems = function () {
     })
 }
 
-var getTotalSymbols = function() {
-    return symbols.length
-}
-
 export {
-    getSymbolsDiv, getCompanyItems, getTotalSymbols
+    getAll, getSymbolAsDiv, getCompanyItems
 }

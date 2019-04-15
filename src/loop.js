@@ -8,14 +8,12 @@ var controllerOptions = {
   enableGestures: true
 };
 
+var slider = null;
 
 $(function () {
   game.initGame()
-  $("#lightSlider").lightSlider({
-    item: 2,
-    loop: true
-  })
   $('#check').click(function () {
+    game.progress()
     var isgameOver = game.isGameOver()
     if (isgameOver) {
       alert("successfully completed game!!")
@@ -25,28 +23,14 @@ $(function () {
 
   Leap.loop(controllerOptions, function (frame) {
       setBasicValues(frame);
-      MatchHighlightedCompany(frame);
+      // MatchHighlightedCompany(frame);
       highlightCompany(frame)
     }).use('handEntry')
     .use('handHold')
+    .on("gesture", function(gesture){
+      console.log(gesture.type)
+    })
 });
-
-
-
-var MatchHighlightedCompany = function (frame) {
-  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
-  setLeftWindowCoordinates(windowCoordinates);
-
-  if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
-    var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
-    if (eleInPosition != null) {
-      if (symbolHelper.isDropSection(eleInPosition)) {
-        var company = companyHelper.getHiglightedCompany()
-        symbolHelper.populateSelectedCompany(eleInPosition, company)
-      }
-    }
-  }
-}
 
 var highlightCompany = function (frame) {
   const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
@@ -55,17 +39,14 @@ var highlightCompany = function (frame) {
   if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
     if (eleInPosition != null) {
-      if (companyHelper.isCompany(eleInPosition)) {
-        companyHelper.resetAllHighlights()
-        companyHelper.markHighlighted(eleInPosition)
-      }
+      // if (companyHelper.isCompanyContainer(eleInPosition)) {
+        var hasSwipeGesture = frameUtils.hasSwipeGesture(frame)
+        if (hasSwipeGesture) {
+          companyHelper.moveToNextCompany();
+        }
+      // }
     }
   }
-}
-
-function setLeftWindowCoordinates(windowPosition) {
-  var windowCoordinates = document.getElementById('leftwindowCoordinates');
-  windowCoordinates.innerText = utils.vectorToStr(windowPosition, 0);
 }
 
 function setRightWindowCoordinates(windowPosition) {
