@@ -1,5 +1,4 @@
 import * as s from './symbols.js'
-import { getSelectedSymbolCompany } from './symbolHelper.js';
 
 var initCompany = function () {
     $('#companiesEle').html('')
@@ -42,7 +41,7 @@ var isCompany = function (ele) {
 }
 
 var getSelectedCompany = function () {
-    $('#companySelected').val()
+    return $('#companySelected').val()
 }
 
 var removeSelected = function () {
