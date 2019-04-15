@@ -1,15 +1,15 @@
-import * as symbols from './symbols.js'
+import * as dataProvider from './dataProvider.js'
 import * as symbolHelper from './symbolHelper.js'
 import * as companyHelper from './companyHelper.js'
 
 var currentSymbolIndex = 0;
 var successCounter = 0;
-var symbolItems = [];
+var symbols = [];
 
 var initGame = function () {
     currentSymbolIndex = 0;
     successCounter = 0;
-    symbolItems = symbols.getAll()
+    symbols = dataProvider.getSymbols()
     displaySymbol()
     companyHelper.initCompany()
 }
@@ -29,14 +29,14 @@ var progress = function() {
 }
 
 var displaySymbol = function() {
-    if (currentSymbolIndex >= symbolItems.length) {
+    if (currentSymbolIndex >= symbols.length) {
         return;
     }
-    symbolHelper.displaySymbol(symbolItems[currentSymbolIndex])
+    symbolHelper.setCurrentSymbol(symbols[currentSymbolIndex])
 }
 
 var isGameOver = function () {
-    return successCounter == symbolItems.length;
+    return successCounter == symbols.length;
 }
 
 

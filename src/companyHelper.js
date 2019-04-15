@@ -1,13 +1,14 @@
-import * as s from './symbols.js'
+import * as dataProvider from './dataProvider.js'
 
 var slider = null;
 
 var initCompany = function () {
     $('#companiesEle').html('')
-    var companies = s.getCompanyItems();
-    $('#companiesEle').html($("<ul>").attr("id", "lightSlider").append(companies));
+    var companies = dataProvider.getCompanies();
+    var companyLineItems = getCompanyItems(companies);
+    $('#companiesEle').html($("<ul>").attr("id", "lightSlider").append(companyLineItems));
     slider = $("#lightSlider").lightSlider({
-        item: 2,
+        item: 3,
         loop: true
       });
 }
@@ -22,6 +23,16 @@ var getSelectedCompany = function() {
 
 var isCompanyContainer = function (ele) {
     return $(ele).hasClass("companies") || $(ele).attr("id") == "main"
+}
+
+var getCompanyItems = function (companies) {
+    return companies.map(company => {
+        var companyItem = $("<li>");
+        companyItem.text(company);
+        companyItem.addClass("company");
+        companyItem.attr('company', company);
+        return companyItem;
+    })
 }
 
 export {

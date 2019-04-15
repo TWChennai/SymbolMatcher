@@ -1,14 +1,11 @@
 import * as frameUtils from './frameUtils.js'
 import * as utils from './utils.js'
-import * as symbolHelper from './symbolHelper.js'
 import * as companyHelper from './companyHelper.js'
 import * as game from './game.js'
 
 var controllerOptions = {
   enableGestures: true
 };
-
-var slider = null;
 
 $(function () {
   game.initGame()
@@ -23,28 +20,26 @@ $(function () {
 
   Leap.loop(controllerOptions, function (frame) {
       setBasicValues(frame);
-      // MatchHighlightedCompany(frame);
-      highlightCompany(frame)
-    }).use('handEntry')
-    .use('handHold')
-    .on("gesture", function(gesture){
+      selectCompany(frame)
+    })
+    .on("gesture", function (gesture) {
       console.log(gesture.type)
     })
 });
 
-var highlightCompany = function (frame) {
+var selectCompany = function (frame) {
   const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
   setRightWindowCoordinates(windowCoordinates);
 
   if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
     if (eleInPosition != null) {
-      // if (companyHelper.isCompanyContainer(eleInPosition)) {
+      if (companyHelper.isCompanyContainer(eleInPosition)) {
         var hasSwipeGesture = frameUtils.hasSwipeGesture(frame)
         if (hasSwipeGesture) {
           companyHelper.moveToNextCompany();
         }
-      // }
+      }
     }
   }
 }

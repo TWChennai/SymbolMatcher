@@ -1,8 +1,7 @@
-import * as s from './symbols.js'
 
-var displaySymbol = function (symbol) {
+var setCurrentSymbol = function (symbol) {
     $('#symbolsEle').html('')
-    var symbolDiv = s.getSymbolAsDiv(symbol);
+    var symbolDiv = getSymbolAsDiv(symbol);
     $('#symbolsEle').html(symbolDiv)
 }
 
@@ -10,8 +9,15 @@ var getSelectedSymbolCompany = function() {
     return $('#symbolsEle .symbol').attr("company");
 }
 
+var getSymbolAsDiv = function (symbol) {
+    var symbolDiv = document.createElement("div");
+    symbolDiv.innerHTML = symbol.name;
+    symbolDiv.className = "boxed symbol";
+    symbolDiv.setAttribute("company", symbol.companyName);
+    return symbolDiv;
+};
 
 export {
-    displaySymbol,
+    setCurrentSymbol,
    getSelectedSymbolCompany
 }
