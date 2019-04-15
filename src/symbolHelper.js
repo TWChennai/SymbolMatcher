@@ -6,68 +6,38 @@ var initSymbol = function () {
     $('#symbolsEle').html(symbols)
 }
 
-var resetAll = function() {
-    resetAllSelection()
-    resetAllHiglights()
-}
-
 var resetAllSelection = function () {
-    $('.symbol').removeClass("selected")
-    $('#symbolSelected').val("")
+    $('.companyValue').val("")
 }
 
-var resetAllHiglights = function () {
-    $('.symbol').removeClass("highlighted")
+var isDropSection = function (ele) {
+    return $(ele).hasClass("companyValue")
 }
 
-var markHighlighted = function (ele) {
-    var currentElement = $(ele)
-    if (currentElement.hasClass("symbol")) {
-        currentElement.addClass("highlighted")
-    }
+var populateSelectedCompany = function(ele, value){
+    $(ele).val(value)
 }
 
-var setSelectedSymbol = function(company) {
-    $('#symbolSelected').val(company)
+var getTotalSymbolMatch = function () {
+    var successCounter = 0;
+    $('.symbol-div').each(function(){
+        var currentSymbol = $(this)
+        if (currentSymbol != undefined) {
+            var symbolCompany = currentSymbol.find(".symbol").attr('company')
+            var userSelectedCompany = currentSymbol.find(".companyValue").val()
+            if (symbolCompany != "" && symbolCompany == userSelectedCompany){
+                successCounter = successCounter + 1
+            }
+        }
+    })
+    return successCounter
 }
 
-var markSelected = function () {
-    var highlightedSymbol = $('.symbol.highlighted')
-    if (highlightedSymbol != undefined) {
-        resetAllSelection()
-        highlightedSymbol.addClass('selected')
-        setSelectedSymbol(highlightedSymbol.attr('company'))
-    }
-}
-
-var getSelectedSymbolCompany = function () {
-    return $('#symbolSelected').val()
-}
-
-var removeSelected = function () {
-    var selectedSymbol = $('.symbol.selected')
-    if (selectedSymbol != undefined) {
-        selectedSymbol.remove()
-    }
-}
-
-var isSymbol = function (ele) {
-    return $(ele).hasClass("symbol")
-}
-
-var isSymbolValueContainer = function(ele) {
-    return $(ele).hasClass("symbolValue")
-}
 
 export {
     initSymbol,
     resetAllSelection,
-    markSelected,
-    isSymbol,
-    getSelectedSymbolCompany,
-    removeSelected,
-    markHighlighted,
-    resetAllHiglights,
-    resetAll,
-    isSymbolValueContainer
+    isDropSection,
+    populateSelectedCompany,
+    getTotalSymbolMatch
 }

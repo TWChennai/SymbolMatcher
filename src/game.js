@@ -1,41 +1,30 @@
 import * as symbols from './symbols.js'
 import * as symbolHelper from './symbolHelper.js'
 import * as companyHelper from './companyHelper.js'
-import * as symbolChecker from './symbolChecker.js'
 
-var successCount = 0;
 var totalCount = 0;
 
 var initGame = function () {
     totalCount = symbols.getTotalSymbols()
-    successCount = 0;
     symbolHelper.initSymbol()
     companyHelper.initCompany()
 }
 
-var progress = function () {
-    var isSame = symbolChecker.checkSymbolMatch()
-    if (isSame) {
-        symbolHelper.removeSelected()
-        companyHelper.removeSelected()
-        incrementSuccessCounter()
-    }
-    symbolHelper.resetAll()
-    companyHelper.resetAll()
-}
-
-var incrementSuccessCounter = function () {
-    successCount = successCount + 1
-}
-
 var isGameOver = function () {
-    return successCount == totalCount && totalCount > 0
+    var successCount = symbolHelper.getTotalSymbolMatch()
+    var isGameOver = successCount == totalCount && totalCount > 0
+    if (isGameOver) {
+        return true;
+    } else {
+        alert("Some matches are wrong!!")
+        symbolHelper.resetAllSelection()
+        companyHelper.resetAllHighlights()
+        return false;
+    }
 }
 
 
 export {
     initGame,
-    incrementSuccessCounter,
-    isGameOver,
-    progress
+    isGameOver
 }

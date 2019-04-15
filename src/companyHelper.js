@@ -6,27 +6,8 @@ var initCompany = function () {
     $('#companiesEle').html(companies);
 }
 
-var resetAllSelection = function () {
-    $('.company').removeClass("selected")
-    $('#companySelected').val("")
-}
-
 var resetAllHighlights = function () {
     $('.company').removeClass("highlighted")
-}
-
-var resetAll = function() {
-    resetAllSelection()
-    resetAllHighlights()
-}
-
-var markSelected = function () {
-    var highlightedCompany = $('.company.highlighted')
-    if (highlightedCompany != undefined) {
-        resetAllSelection()
-        highlightedCompany.addClass('selected')
-        setSelectedCompany(highlightedCompany.attr('company'))
-    }
 }
 
 var markHighlighted = function (ele) {
@@ -36,41 +17,25 @@ var markHighlighted = function (ele) {
     }
 }
 
+var getHiglightedCompany = function() {
+    var highlightedCompany = $('.company.highlighted')
+    if (highlightedCompany != undefined) {
+        return highlightedCompany.attr('company')
+    }
+
+    return ""
+}
+
 var isCompany = function (ele) {
     return $(ele).hasClass("company")
 }
 
-var getSelectedCompany = function () {
-    return $('#companySelected').val()
-}
-
-var removeSelected = function () {
-    $('.company.selected').remove()
-    var selectedCompany = $('.company.selected')
-    if (selectedCompany != undefined) {
-        selectedCompany.remove()
-    }
-}
-
-var setSelectedCompany = function(company) {
-    $('#companySelected').val(company)
-}
-
-var isCompanyValueContainer = function(ele) {
-    return $(ele).hasClass("companyValue")
-}
-
 export {
     initCompany,
-    resetAllSelection,
-    markSelected,
     isCompany,
-    getSelectedCompany,
-    removeSelected,
+    getHiglightedCompany,
     markHighlighted,
     resetAllHighlights,
-    resetAll,
-    isCompanyValueContainer
 }
 
 

@@ -12,7 +12,6 @@ var controllerOptions = {
 $(function () {
   game.initGame()
   $('#check').click(function () {
-    game.progress()
     var isgameOver = game.isGameOver()
     if (isgameOver) {
       alert("successfully completed game!!")
@@ -22,7 +21,7 @@ $(function () {
 
   Leap.loop(controllerOptions, function (frame) {
       setBasicValues(frame);
-      highlightSymbol(frame);
+      MatchHighlightedCompany(frame);
       highlightCompany(frame)
     }).use('handEntry')
     .use('handHold')
@@ -30,19 +29,16 @@ $(function () {
 
 
 
-var highlightSymbol = function (frame) {
-  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.left);
+var MatchHighlightedCompany = function (frame) {
+  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
   setLeftWindowCoordinates(windowCoordinates);
 
   if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
     if (eleInPosition != null) {
-      if (symbolHelper.isSymbol(eleInPosition)) {
-        symbolHelper.resetAllHiglights()
-        symbolHelper.markHighlighted(eleInPosition)
-      }
-      if (symbolHelper.isSymbolValueContainer(eleInPosition)){
-        symbolHelper.markSelected()
+      if (symbolHelper.isDropSection(eleInPosition)) {
+        var company = companyHelper.getHiglightedCompany()
+        symbolHelper.populateSelectedCompany(eleInPosition, company)
       }
     }
   }
@@ -58,9 +54,6 @@ var highlightCompany = function (frame) {
       if (companyHelper.isCompany(eleInPosition)) {
         companyHelper.resetAllHighlights()
         companyHelper.markHighlighted(eleInPosition)
-      }
-      if (companyHelper.isCompanyValueContainer(eleInPosition)){
-        companyHelper.markSelected()
       }
     }
   }
