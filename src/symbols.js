@@ -12,49 +12,49 @@ var symbols = [{
         name: 'Symbol3',
         url: 'url3',
         companyName: 'Company3'
-    },
-    {
-        name: 'Symbol4',
-        url: 'url3',
-        companyName: 'Company4'
-    },
-    {
-        name: 'Symbol5',
-        url: 'url3',
-        companyName: 'Company5'
-    },
-    {
-        name: 'Symbol6',
-        url: 'url3',
-        companyName: 'Company6'
-    },
-    {
-        name: 'Symbol7',
-        url: 'url3',
-        companyName: 'Company7'
-    },
-    {
-        name: 'Symbol8',
-        url: 'url3',
-        companyName: 'Company8'
-    },
-    {
-        name: 'Symbol9',
-        url: 'url3',
-        companyName: 'Company9'
-    },
-    {
-        name: 'Symbol10',
-        url: 'url3',
-        companyName: 'Company10'
     }
+    // },
+    // {
+    //     name: 'Symbol4',
+    //     url: 'url3',
+    //     companyName: 'Company4'
+    // },
+    // {
+    //     name: 'Symbol5',
+    //     url: 'url3',
+    //     companyName: 'Company5'
+    // },
+    // {
+    //     name: 'Symbol6',
+    //     url: 'url3',
+    //     companyName: 'Company6'
+    // },
+    // {
+    //     name: 'Symbol7',
+    //     url: 'url3',
+    //     companyName: 'Company7'
+    // },
+    // {
+    //     name: 'Symbol8',
+    //     url: 'url3',
+    //     companyName: 'Company8'
+    // },
+    // {
+    //     name: 'Symbol9',
+    //     url: 'url3',
+    //     companyName: 'Company9'
+    // },
+    // {
+    //     name: 'Symbol10',
+    //     url: 'url3',
+    //     companyName: 'Company10'
+    // }
 ]
 
 var getSymbolDiv = function (symbol) {
     var symbolDiv = document.createElement("div");
-    symbolDiv.innerHTML = symbol.name;
-    symbolDiv.className = "boxed symbol";
-    symbolDiv.setAttribute('company', symbol.companyName);
+    symbolDiv.innerHTML = "<div class='boxed symbol' company=" + symbol.companyName +"><p>" + symbol.name + "</p></div><input type='textbox' class='companyValue'></input>";
+    symbolDiv.className = "symbol-div";
     return symbolDiv;
 };
 
