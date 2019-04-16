@@ -1,43 +1,27 @@
-import * as symbolHelper from './symbolHelper.js'
-import * as companyHelper from './companyHelper.js'
 import * as timerUtils from './timer.js'
 import * as round from './round.js'
 import * as state from './gameState.js'
+import * as view from './gameView.js'
 
 var initGame = function () {
     timerUtils.initTimer(() => progress())
     state.init()
-    displaySymbol()
-    companyHelper.initCompany()
+    view.init(state)
 }
 
 var progress = function () {
     if (round.checkMatch()) {
-        alert("true")
         state.handleSuccessRound()
-        displaySymbol()
-    } else {
-        alert("false")
+        view.handleSuccessRound()
     }
-    companyHelper.reset()
+    view.handleEachRound()
     var isgameOver = state.isGameOver()
     if (isgameOver) {
         alert("successfully completed game!!")
-        restart()
+        initGame()
         return;
     }
     timerUtils.start()
-}
-
-var restart = function () {
-    game.initGame()
-}
-
-var displaySymbol = function () {
-    if (state.currentSymbol() == null) {
-        return;
-    }
-    symbolHelper.setCurrentSymbol(state.currentSymbol())
 }
 
 export {
