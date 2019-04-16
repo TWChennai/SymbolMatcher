@@ -1,34 +1,26 @@
-import * as dataProvider from './dataProvider.js'
 import * as symbolHelper from './symbolHelper.js'
 import * as companyHelper from './companyHelper.js'
 import * as timerUtils from './timer.js'
-
-var currentSymbolIndex = 0;
-var successCounter = 0;
-var symbols = [];
+import * as round from './round.js'
+import * as state from './gameState.js'
 
 var initGame = function () {
     timerUtils.initTimer(() => progress())
-    currentSymbolIndex = 0;
-    successCounter = 0;
-    symbols = dataProvider.getSymbols()
+    state.init()
     displaySymbol()
     companyHelper.initCompany()
 }
 
 var progress = function () {
-    var selectedSymbolCompany = symbolHelper.getSelectedSymbolCompany();
-    var userSelectedCompany = companyHelper.getSelectedCompany();
-    if (selectedSymbolCompany != "" && selectedSymbolCompany == userSelectedCompany) {
+    if (round.checkMatch()) {
         alert("true")
-        successCounter += 1
-        currentSymbolIndex += 1
+        state.handleSuccessRound()
         displaySymbol()
     } else {
         alert("false")
     }
     companyHelper.reset()
-    var isgameOver = isGameOver()
+    var isgameOver = state.isGameOver()
     if (isgameOver) {
         alert("successfully completed game!!")
         restart()
@@ -42,19 +34,13 @@ var restart = function () {
 }
 
 var displaySymbol = function () {
-    if (currentSymbolIndex >= symbols.length) {
+    if (state.currentSymbol() == null) {
         return;
     }
-    symbolHelper.setCurrentSymbol(symbols[currentSymbolIndex])
+    symbolHelper.setCurrentSymbol(state.currentSymbol())
 }
-
-var isGameOver = function () {
-    return successCounter == symbols.length;
-}
-
 
 export {
     initGame,
     progress,
-    isGameOver
 }

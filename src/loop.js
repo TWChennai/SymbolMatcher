@@ -9,11 +9,6 @@ var controllerOptions = {
 
 var check = function () {
   game.progress()
-  var isgameOver = game.isGameOver()
-  if (isgameOver) {
-    alert("successfully completed game!!")
-    game.initGame()
-  }
 }
 
 $(function () {
