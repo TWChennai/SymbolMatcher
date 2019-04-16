@@ -20,10 +20,12 @@ var progress = function () {
     else{
         alert('false')
     }
+    state.handleEachRound()
     view.handleEachRound()
     var isgameOver = state.isGameOver()
     if (isgameOver) {
-        alert("successfully completed game!!")
+        var stats = state.stats()
+        alert("Status: " + stats.status + " " + stats.summary)
         initGame()
         return;
     }
