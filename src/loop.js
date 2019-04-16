@@ -17,6 +17,7 @@ $(function () {
 
   Leap.loop(controllerOptions, function (frame) {
       swipeAndChooseCompany(frame)
+      confirmSelection(frame)
     })
     .on("gesture", function (gesture) {
       if (gesture.type != "swipe" && gesture.state == "start") {
@@ -24,6 +25,15 @@ $(function () {
       }
     })
 });
+
+var confirmSelection = function(frame) {
+  var keyTapGesture = frameUtils.getGesture(frame, "keyTap")
+  var screenTapGesture = frameUtils.getGesture(frame, "screenTap")
+  var circleGesture = frameUtils.getGesture(frame, "circle")
+  if (keyTapGesture != undefined || screenTapGesture != undefined || circleGesture != undefined) {
+    check()
+  }
+}
 
 var swipeAndChooseCompany = function (frame) {
   var swipeGesture = frameUtils.getGesture(frame, "swipe")

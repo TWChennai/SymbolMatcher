@@ -13,12 +13,8 @@ var initGame = function () {
 
 var progress = function () {
     if (round.checkMatch()) {
-        alert('true')
         state.handleSuccessRound()
         view.handleSuccessRound()
-    }
-    else{
-        alert('false')
     }
     state.handleEachRound()
     view.handleEachRound()

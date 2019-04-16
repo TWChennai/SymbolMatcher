@@ -8,7 +8,7 @@ var initTimer = function (callback) {
 
 var deleteAndCreateTimer = function () {
     $(".timer").remove()
-    var timerEle = $('<h1>').addClass('timer').data("seconds-left", 10);
+    var timerEle = $('<h1>').addClass('timer').attr("data-seconds-left", 10);
     timerEle.insertAfter(".title")
 }
 

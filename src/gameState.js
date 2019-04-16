@@ -32,10 +32,16 @@ var isGameOver = function () {
 }
 
 var stats = function () {
-    var success = successCounter == symbols.length
+    var summary = "Total Symbols: "+ symbols.length + "Correctly found symbols: " + successCounter
+    if (noOfTrials < maxTrials) {
+        return {
+            'status': "In progress",
+            'summary': summary,
+        };
+    }
     return {
-        'status': success ? "Won" : "Lost",
-        'summary': "Total Symbols: "+ symbols.length + "Correctly found symbols: " + successCounter,
+        'status': successCounter == symbols.length ? "Won" : "Lost",
+        'summary': summary,
     }
 }
 

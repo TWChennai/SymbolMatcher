@@ -23,6 +23,11 @@
       background: silver;
   }
 
+  .summary{
+    width: 400px;
+    margin: auto
+  }
+
   .companies .lSSlideOuter,
   .companies .lightSlider,
   .companies .company {

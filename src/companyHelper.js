@@ -8,9 +8,10 @@ var initCompany = function () {
     var companyLineItems = getCompanyItems(companies);
     $('#companiesEle').html($("<ul>").attr("id", "lightSlider").append(companyLineItems));
     slider = $("#lightSlider").lightSlider({
-        item: 3,
+        item: 1,
         loop: true,
-        rtl: false
+        rtl: false,
+        gallery: false
       });
     slider.play();
 }
