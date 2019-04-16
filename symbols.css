@@ -12,6 +12,10 @@
     margin-bottom: 30px;
   }
 
+  div[class^="jst"] {
+    float: left;
+  }
+
   .companies {
       max-width: 700px;
       height: 400px;

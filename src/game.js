@@ -4,15 +4,21 @@ import * as state from './gameState.js'
 import * as view from './gameView.js'
 
 var initGame = function () {
-    timerUtils.initTimer(() => progress())
+    timerUtils.initTimer(() => {
+        progress()
+    })
     state.init()
     view.init(state)
 }
 
 var progress = function () {
     if (round.checkMatch()) {
+        alert('true')
         state.handleSuccessRound()
         view.handleSuccessRound()
+    }
+    else{
+        alert('false')
     }
     view.handleEachRound()
     var isgameOver = state.isGameOver()
@@ -21,7 +27,7 @@ var progress = function () {
         initGame()
         return;
     }
-    timerUtils.start()
+    timerUtils.reset()
 }
 
 export {
