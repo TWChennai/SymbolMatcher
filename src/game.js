@@ -26,6 +26,7 @@ var progress = function() {
     else {
         alert("false")
     }
+    companyHelper.reset()
 }
 
 var displaySymbol = function() {

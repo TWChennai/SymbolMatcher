@@ -7,38 +7,51 @@ var controllerOptions = {
   enableGestures: true
 };
 
+var check = function () {
+  game.progress()
+  var isgameOver = game.isGameOver()
+  if (isgameOver) {
+    alert("successfully completed game!!")
+    game.initGame()
+  }
+}
+
 $(function () {
   game.initGame()
-  $('#check').click(function () {
-    game.progress()
-    var isgameOver = game.isGameOver()
-    if (isgameOver) {
-      alert("successfully completed game!!")
-      game.initGame()
-    }
-  })
+  $('#check').click(check)
 
   Leap.loop(controllerOptions, function (frame) {
-      setBasicValues(frame);
-      selectCompany(frame)
+      swipeAndChooseCompany(frame)
     })
     .on("gesture", function (gesture) {
-      console.log(gesture.type)
+      if (gesture.type != "swipe" && gesture.state == "start") {
+        check()
+      }
     })
 });
 
-var selectCompany = function (frame) {
-  const windowCoordinates = frameUtils.getIndexFingerCoordinates(frame, frameUtils.handType.right);
+var swipeAndChooseCompany = function (frame) {
+  var swipeGesture = frameUtils.getGesture(frame, "swipe")
+  if (swipeGesture != undefined && swipeGesture != 0) {
+    if (swipeGesture.speed != undefined)
+      var speed = swipeGesture.speed
+      if (speed < 100) {
+        companyHelper.next(1)
+      }
+      else 
+        companyHelper.next(Math.ceil(speed / 100))
+      }
+}
+
+var circleCompany = function (frame) {
+  const windowCoordinates = frameUtils.getCircleGestureCoordinates(frame, frameUtils.handType.right);
   setRightWindowCoordinates(windowCoordinates);
 
   if (!Number.isNaN(windowCoordinates[0] && !Number.isNaN(windowCoordinates[1]))) {
     var eleInPosition = document.elementFromPoint(windowCoordinates[0], windowCoordinates[1]);
     if (eleInPosition != null) {
-      if (companyHelper.isCompanyContainer(eleInPosition)) {
-        var hasSwipeGesture = frameUtils.hasSwipeGesture(frame)
-        if (hasSwipeGesture) {
-          companyHelper.moveToNextCompany();
-        }
+      if (companyHelper.isCompany(eleInPosition)) {
+        alert(eleInPosition.textContent)
       }
     }
   }
@@ -47,17 +60,4 @@ var selectCompany = function (frame) {
 function setRightWindowCoordinates(windowPosition) {
   var windowCoordinates = document.getElementById('rightwindowCoordinates');
   windowCoordinates.innerText = utils.vectorToStr(windowPosition, 0);
-}
-
-function setBasicValues(frame) {
-  var fpsDisplay = document.getElementById('leapFPS');
-  var handCountDisplay = document.getElementById('handCount');
-  var fingerCountDisplay = document.getElementById('fingerCount');
-  var rightPinchStrengthDisplay = document.getElementById('rightPinchStrength')
-  var leftPinchStrengthDisplay = document.getElementById('leftPinchStrength')
-  fpsDisplay.innerText = frame.currentFrameRate;
-  handCountDisplay.innerText = frame.hands.length;
-  fingerCountDisplay.innerText = frame.fingers.length;
-  rightPinchStrengthDisplay.innerText = frameUtils.getHandPinchStrength(frame, frameUtils.handType.right)
-  leftPinchStrengthDisplay.innerText = frameUtils.getHandPinchStrength(frame, frameUtils.handType.left)
 }

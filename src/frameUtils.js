@@ -57,9 +57,33 @@ var getHandPinchStrength = function (frame, type) {
   return 0
 }
 
+var getCircleGestureCoordinates = function (frame, type) {
+  var tipPosition = getCircleGesturePosition(frame, type);
+  var windowPosition = getWindowCoordinates(frame, tipPosition)
+  return windowPosition
+}
+
+var getGesture = function(frame, type) {
+  if (!frame.valid || frame.pointables.length <= 0 || frame.gestures.length <= 0) {
+    return undefined;
+  }
+  return frame.gestures.find(g => g.type == type)
+}
+
+var getCircleGesturePosition = function (frame) {
+  var cirleGesture = getGesture(frame, "circle")
+  if (cirleGesture != undefined){
+    var pointableIds = cirleGesture.pointableIds;
+    return frame.pointables.find(p => p.id == pointableIds[0]).tipPosition;
+  }
+  return 0;
+}
+
 export {
   getIndexFingerCoordinates,
   getHandPinchStrength,
   handType,
-  hasSwipeGesture
+  hasSwipeGesture,
+  getCircleGestureCoordinates,
+  getGesture
 }
