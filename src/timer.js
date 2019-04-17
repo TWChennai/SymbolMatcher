@@ -1,3 +1,5 @@
+import * as config from './configuration.json'
+
 var callbackFunc = null;
 var timer = null
 
@@ -8,7 +10,7 @@ var initTimer = function (callback) {
 
 var deleteAndCreateTimer = function () {
     $(".timer").remove()
-    var timerEle = $('<h1>').addClass('timer').attr("data-seconds-left", 10);
+    var timerEle = $('<h1>').addClass('timer').attr("data-seconds-left", config.roundDuration);
     timerEle.insertAfter(".title")
 }
 

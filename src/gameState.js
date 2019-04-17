@@ -1,4 +1,5 @@
 import * as dataProvider from './dataProvider.js'
+import * as config from './configuration.json'
 
 var currentSymbolIndex = 0;
 var successCounter = 0;
@@ -6,13 +7,16 @@ var symbols = [];
 var noOfTrials = 0;
 var maxTrials = 0;
 
+var won = "Won";
+var inProgress = "In Progress";
+var lost = "Lost";
 
 var init = function () {
     currentSymbolIndex = 0;
     successCounter = 0;
     symbols = dataProvider.getSymbols()
     noOfTrials = 0
-    maxTrials = symbols.length + 2
+    maxTrials = config.maxTrials
 }
 
 var handleSuccessRound = function () {
@@ -25,10 +29,7 @@ var handleEachRound = function () {
 }
 
 var isGameOver = function () {
-    if (noOfTrials == maxTrials) {
-        return true;
-    }
-    return successCounter == symbols.length;
+    return getStatus() != inProgress
 }
 
 var shortStats = function () {
@@ -45,13 +46,13 @@ var stats = function () {
 }
 
 var getStatus = function () {
-    if (successCounter == symbols.length) {
-        return "Won"
+    if (successCounter == config.successCriteria) {
+        return won
     }
     if (noOfTrials < maxTrials) {
-        return "In progress"
+        return inProgress
     }
-    return "Lost"
+    return lost
 }
 
 var currentSymbol = function () {
