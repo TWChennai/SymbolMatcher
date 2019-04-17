@@ -2,7 +2,8 @@
 var setCurrentSymbol = function (symbol) {
     $('#symbolsEle').html('')
     var symbolDiv = getSymbolAsDiv(symbol);
-    $('#symbolsEle').html(symbolDiv)
+    var header = $("<h2>").text("Current Symbol")
+    $('#symbolsEle').html(header.append(symbolDiv))
 }
 
 var getSelectedSymbolCompany = function() {

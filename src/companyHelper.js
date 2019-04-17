@@ -6,7 +6,9 @@ var initCompany = function () {
     $('#companiesEle').html('')
     var companies = dataProvider.getCompanies();
     var companyLineItems = getCompanyItems(companies);
-    $('#companiesEle').html($("<ul>").attr("id", "lightSlider").append(companyLineItems));
+    var header = $('<h3>').text("Choose the matching company:")
+    var companiesList = $("<ul>").attr("id", "lightSlider").append(companyLineItems)
+    $('#companiesEle').html(header.append(companiesList));
     slider = $("#lightSlider").lightSlider({
         item: 1,
         loop: true,
