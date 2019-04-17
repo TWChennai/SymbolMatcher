@@ -31,18 +31,27 @@ var isGameOver = function () {
     return successCounter == symbols.length;
 }
 
+var shortStats = function () {
+    return getStatus()
+}
+
 var stats = function () {
-    var summary = "Total Symbols: "+ symbols.length + "Correctly found symbols: " + successCounter
-    if (noOfTrials < maxTrials) {
-        return {
-            'status': "In progress",
-            'summary': summary,
-        };
-    }
     return {
-        'status': successCounter == symbols.length ? "Won" : "Lost",
-        'summary': summary,
+        'status': getStatus(),
+        'totalSymbols': symbols.length,
+        'successCount': successCounter,
+        'trialsLeft': maxTrials - noOfTrials
     }
+}
+
+var getStatus = function () {
+    if (successCounter == symbols.length) {
+        return "Won"
+    }
+    if (noOfTrials < maxTrials) {
+        return "In progress"
+    }
+    return "Lost"
 }
 
 var currentSymbol = function () {
@@ -59,5 +68,6 @@ export {
     handleEachRound,
     isGameOver,
     currentSymbol,
-    stats
+    stats,
+    shortStats
 }

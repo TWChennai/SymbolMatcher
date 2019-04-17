@@ -6,7 +6,8 @@ var init = function() {
 
 var update = function() {
     var stats = state.stats()
-    $('#summary').text(stats.status + stats.summary)
+    var summary = "Status: " + stats.status + " Total Symbols: " + stats.totalSymbols + " Symbols Matched: " + stats.successCount + " Trials left: " + stats.trialsLeft
+    $('#summary').text(summary)
 }
 
 export { init, update }

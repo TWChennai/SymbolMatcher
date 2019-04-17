@@ -20,8 +20,7 @@ var progress = function () {
     view.handleEachRound()
     var isgameOver = state.isGameOver()
     if (isgameOver) {
-        var stats = state.stats()
-        alert("Status: " + stats.status + " " + stats.summary)
+        alert("Status: " + state.shortStats())
         initGame()
         return;
     }
