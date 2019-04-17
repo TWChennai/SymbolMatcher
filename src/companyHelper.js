@@ -11,7 +11,7 @@ var initCompany = function () {
         item: 1,
         loop: true,
         rtl: false,
-        gallery: false
+        gallery: true
       });
     slider.play();
 }
@@ -43,11 +43,18 @@ var isCompany = function (ele) {
 var getCompanyItems = function (companies) {
     return companies.map(company => {
         var companyItem = $("<li>");
-        companyItem.text(company);
+        companyItem.attr('data-thumb', company.imageUrl)
+        companyItem.append(getCompanyImage(company.imageUrl));
         companyItem.addClass("company");
-        companyItem.attr('company', company);
+        companyItem.attr('company', company.name);
         return companyItem;
     })
+}
+
+var getCompanyImage = function(imageUrl) {
+    var img = $('<img>');
+    img.attr('src', imageUrl);
+    return img;
 }
 
 export {

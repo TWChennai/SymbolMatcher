@@ -10,12 +10,18 @@ var getSelectedSymbolCompany = function() {
 }
 
 var getSymbolAsDiv = function (symbol) {
-    var symbolDiv = document.createElement("div");
-    symbolDiv.innerHTML = symbol.name;
-    symbolDiv.className = "boxed symbol";
-    symbolDiv.setAttribute("company", symbol.companyName);
+    var symbolDiv = $("<div>");
+    symbolDiv.append(getSymbolImage(symbol.symbolImageUrl))
+    .addClass("boxed symbol")
+    .attr("company", symbol.companyName);
     return symbolDiv;
 };
+
+var getSymbolImage = function(imageUrl) {
+    var img = $('<img>');
+    img.attr('src', imageUrl);
+    return img;
+}
 
 export {
     setCurrentSymbol,
