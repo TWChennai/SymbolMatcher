@@ -3,7 +3,7 @@ fileignoreconfig:
   checksum: 554fa2b4de5dde72dc34171adffa706833d5f1c43bc8914251d7fb4e139662ea
   ignore_detectors: []
 - filename: package-lock.json
-  checksum: 2f528c9e44b7d610450ed4402829b9483a4ba296c5e9c90bd70d4bd367d1bddd
+  checksum: c07878c135040a7efc3083ccb00b1bb55a9cfb2cc5ec244d71bd1ced594ab64d
   ignore_detectors: []
 - filename: symbols.html
   checksum: 486f952d78af53808812b31c3c685211d6f68f50499ca2eb307ddb1cf5510ca1

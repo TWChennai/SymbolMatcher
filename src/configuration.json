@@ -1,0 +1,69 @@
+{
+    "questionsCount" : 5,
+    "maxTrials" : 7,
+    "roundDuration" : 15,
+    "successCriteria" : 5,
+
+    "symbols" : [{
+        "name": "Symbol1",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company1"
+    },
+    {
+        "name": "Symbol2",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company2"
+    },
+    {
+        "name": "Symbol3",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company3"
+    },
+    {
+        "name": "Symbol4",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company4"
+    },
+    {
+        "name": "Symbol5",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company5"
+    },
+    {
+        "name": "Symbol6",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company6"
+    },
+    {
+        "name": "Symbol7",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company7"
+    },
+    {
+        "name": "Symbol8",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company8"
+    },
+    {
+        "name": "Symbol9",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company9"
+    },
+    {
+        "name": "Symbol10",
+        "symbolImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyImageUrl": "img/selenium_thoughtworks.jpeg",
+        "companyName": "Company10"
+    }
+]
+    
+}
