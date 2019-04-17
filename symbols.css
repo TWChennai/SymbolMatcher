@@ -20,7 +20,8 @@
 
   .summary{
     width: 400px;
-    margin: auto
+    margin: auto;
+    float: right;
   }
 
   .companies .lSSlideOuter,
@@ -52,4 +53,8 @@ li {
 
 .lSPager.lSGallery {
   margin: 0 auto !important
+}
+
+.title{
+  text-align: center
 }
