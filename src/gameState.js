@@ -19,6 +19,14 @@ var init = function () {
     maxTrials = config.maxTrials
 }
 
+var clear = function() {
+    currentSymbolIndex = 0;
+    successCounter = 0;
+    symbols = []
+    noOfTrials = 0
+    maxTrials = 0
+}
+
 var handleSuccessRound = function () {
     successCounter += 1
     currentSymbolIndex += 1
@@ -70,5 +78,6 @@ export {
     isGameOver,
     currentSymbol,
     stats,
-    shortStats
+    shortStats,
+    clear
 }

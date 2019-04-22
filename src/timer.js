@@ -25,7 +25,12 @@ var reset = function () {
     })
 }
 
+var clear = function() {
+    $(".timer").remove()
+}
+
 export {
     initTimer,
-    reset
+    reset,
+    clear
 }

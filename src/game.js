@@ -13,6 +13,12 @@ var initGame = function () {
     view.init(state)
 }
 
+var endGame = function() {
+    timerUtils.clear()
+    state.clear()
+    view.clear()
+}
+
 var progress = function () {
     if (round.checkMatch()) {
         state.handleSuccessRound()
@@ -23,7 +29,7 @@ var progress = function () {
     var isgameOver = state.isGameOver()
     if (isgameOver) {
         alert("Status: " + state.shortStats())
-        initGame()
+        endGame()
         return;
     }
     timerUtils.reset()

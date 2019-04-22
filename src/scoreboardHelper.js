@@ -14,4 +14,8 @@ var update = function() {
     $('#summary').append(statusEle).append(totalEle).append(successEle).append(trialsEle)
 }
 
-export { init, update }
+var clear = function() {
+    $('#summary').text("Summary...")
+}
+
+export { init, update, clear }

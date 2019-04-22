@@ -18,6 +18,10 @@ var initCompany = function () {
     slider.play();
 }
 
+var clear = function() {
+    $('#companiesEle').html('')
+}
+
 var next = function(times) {
     var currentSlideCount = slider.getCurrentSlideCount()
    var totalCompanies = dataProvider.getCompanies().length
@@ -64,7 +68,8 @@ export {
     isCompany,
     getSelectedCompany,
     next,
-    reset
+    reset,
+    clear
 }
 
 

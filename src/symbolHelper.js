@@ -24,7 +24,12 @@ var getSymbolImage = function(imageUrl) {
     return img;
 }
 
+var clear = function() {
+    $('#symbolsEle').html('')
+}
+
 export {
     setCurrentSymbol,
-   getSelectedSymbolCompany
+   getSelectedSymbolCompany,
+   clear
 }

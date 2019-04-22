@@ -12,7 +12,7 @@ var check = function () {
 }
 
 $(function () {
-  game.initGame()
+  $('#start-game').click(() => game.initGame())
   $('#check').click(check)
 
   Leap.loop(controllerOptions, function (frame) {

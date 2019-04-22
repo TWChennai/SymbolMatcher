@@ -11,6 +11,12 @@ var init = function(stateParam) {
    scoreboardHelper.init()
 }
 
+var clear = function() {
+    symbolHelper.clear()
+    companyHelper.clear()
+    scoreboardHelper.clear()
+}
+
 var handleSuccessRound = function() {
     displaySymbol()
 }
@@ -28,4 +34,4 @@ var displaySymbol = function () {
     symbolHelper.setCurrentSymbol(state.currentSymbol())
 }
 
-export { init, handleSuccessRound, handleEachRound }
+export { init, handleSuccessRound, handleEachRound, clear }
