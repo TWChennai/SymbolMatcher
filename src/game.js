@@ -6,7 +6,7 @@ import * as dataProvider from './dataProvider.js'
 
 var initGame = function () {
     timerUtils.initTimer(() => {
-        progress()
+        nextRound()
     })
     dataProvider.init()
     state.init()
@@ -19,11 +19,7 @@ var endGame = function() {
     view.clear()
 }
 
-var progress = function () {
-    if (round.checkMatch()) {
-        state.handleSuccessRound()
-        view.handleSuccessRound()
-    }
+var nextRound = function() {
     state.handleEachRound()
     view.handleEachRound()
     var isgameOver = state.isGameOver()
@@ -33,6 +29,14 @@ var progress = function () {
         return;
     }
     timerUtils.reset()
+}
+
+var progress = function () {
+    if (round.checkMatch()) {
+        state.handleSuccessRound()
+        view.handleSuccessRound()
+    }
+    nextRound()
 }
 
 export {
